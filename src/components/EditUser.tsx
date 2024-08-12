@@ -1,6 +1,7 @@
 import Header from "./Header.tsx";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth.ts";
 
 interface Props {
   onLogout: () => void;
@@ -9,9 +10,14 @@ interface Props {
 const EditUser: React.FC<Props> = ({ onLogout }) => {
   const [newUsername, setNewUsername] = useState("");
   const navigate = useNavigate();
+  const { setCorrectUsername } = useAuth();
 
   const handleChangeUsername = () => {
     localStorage.setItem("user", newUsername);
+    setCorrectUsername({
+      username: newUsername,
+      email: "ibrahim@gmail.com",
+    });
     navigate("/dashboard");
   };
 

@@ -3,7 +3,7 @@ const SocialMediaLinks = () => {
     <div className="flex space-x-2 space-y-2">
       <a
         href="https://github.com/Ibrairsyad17/"
-        className="flex justify-between items-center text-sm text-white hover:underline bg-gray-900 rounded-md py-1 px-2 mt-2"
+        className="flex justify-between items-center text-sm text-white hover:underline bg-gray-800 rounded-md py-1 px-2 mt-2"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

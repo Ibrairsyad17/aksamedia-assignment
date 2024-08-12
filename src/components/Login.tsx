@@ -3,9 +3,10 @@ import SocialMediaLinks from "./SocialMediaLinks.tsx";
 
 interface LoginProps {
   onLogin: (username: string, password: string) => void;
+  mode: string;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLogin, mode }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,10 +17,20 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center space-y-4">
-      <div className="mt-7 max-w-sm mx-auto bg-white border border-gray-200 rounded-xl shadow-sm">
+      <div
+        className={`mt-7 max-w-sm mx-auto ${
+          mode === "light"
+            ? "bg-white border-gray-200"
+            : "bg-black text-white border-gray-800 shadow-gray-900"
+        } border rounded-xl shadow`}
+      >
         <div className="p-4 sm:p-7">
           <div className="text-center">
-            <h1 className="block text-2xl font-bold text-gray-800">
+            <h1
+              className={`block text-2xl font-bold ${
+                mode === "light" ? "text-gray-900" : "text-white"
+              }`}
+            >
               Welcome Admin!
             </h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
@@ -40,7 +51,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       name="username"
                       type="text"
                       required
-                      className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className={`px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                        mode === "light"
+                          ? ""
+                          : "text-white bg-black ring-gray-800"
+                      }`}
                       onChange={(e) => setUsername(e.target.value)}
                       placeholder="Masukkan Username"
                     />
@@ -58,7 +73,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       type="password"
                       id="password"
                       name="password"
-                      className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className={`px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                        mode === "light"
+                          ? ""
+                          : "text-white bg-black ring-gray-800"
+                      }`}
                       required
                       aria-describedby="password-error"
                       onChange={(e) => setPassword(e.target.value)}
