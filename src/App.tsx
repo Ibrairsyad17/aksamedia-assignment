@@ -1,35 +1,11 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login.tsx";
 import Dashboard from "./components/Dashboard.tsx";
 import EditUser from "./components/EditUser.tsx";
+import useAuth from "./hooks/useAuth.ts";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    const password = localStorage.getItem("password");
-    if (user && password) {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const handleLogin = (username: string, password: string) => {
-    if (username === "ibrahim" && password === "123456") {
-      localStorage.setItem("user", username);
-      localStorage.setItem("password", password);
-      setIsAuthenticated(true);
-    } else {
-      alert("Invalid username");
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("password");
-    setIsAuthenticated(false);
-  };
+  const { isAuthenticated, handleLogin, handleLogout } = useAuth();
 
   return (
     <Router>
