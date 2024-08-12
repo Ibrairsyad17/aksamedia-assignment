@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import UserManagement from "./UserManagement";
 import Header from "./Header.tsx";
 import useUsers from "../hooks/useUsers.ts";
@@ -9,7 +9,6 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
   const {
-    setUsers,
     handleAddUser,
     handleDeleteUser,
     handleUpdateUser,
@@ -20,30 +19,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
     handlePrevPage,
     currentPage,
   } = useUsers();
-
-  useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    if (storedUsers.length === 0) {
-      const initialUsers = [
-        "Haaland",
-        "Rashford",
-        "Salah",
-        "Messi",
-        "Gojo",
-        "Yuji",
-        "Tanjiro",
-        "Sakura",
-        "Ariana",
-        "Onana",
-        "Asep",
-      ];
-      localStorage.setItem("users", JSON.stringify(initialUsers));
-      setUsers(initialUsers);
-    } else {
-      setUsers(storedUsers);
-    }
-    setUsers(storedUsers);
-  }, []);
 
   return (
     <div>

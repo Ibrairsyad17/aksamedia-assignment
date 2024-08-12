@@ -15,6 +15,24 @@ export default function useUsers() {
     setSearchQuery(query);
   }, [location.search]);
 
+  useEffect(() => {
+    const initialUsers = [
+      "Haaland",
+      "Rashford",
+      "Salah",
+      "Messi",
+      "Gojo",
+      "Yuji",
+      "Tanjiro",
+      "Sakura",
+      "Ariana",
+      "Onana",
+      "Asep",
+    ];
+    localStorage.setItem("users", JSON.stringify(initialUsers));
+    setUsers(initialUsers);
+  }, []);
+
   const handleAddUser = (username: string) => {
     const updatedUsers = [...users, username];
     setUsers(updatedUsers);
