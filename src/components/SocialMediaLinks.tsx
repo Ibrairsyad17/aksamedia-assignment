@@ -23,7 +23,7 @@ const SocialMediaLinks = () => {
         Github
       </a>
       <a
-        href="https://github.com/Ibrairsyad17/"
+        href="https://www.linkedin.com/in/ibrairsyad17/"
         className="flex justify-between items-center text-sm text-white hover:underline bg-sky-600 rounded-md py-1 px-2 mt-2"
       >
         <svg
@@ -45,7 +45,7 @@ const SocialMediaLinks = () => {
         LinkedIn
       </a>
       <a
-        href="https://github.com/Ibrairsyad17/"
+        href="https://www.instagram.com/ibrairsyy._/"
         className="flex justify-between items-center text-sm text-white hover:underline bg-rose-600 rounded-md py-1 px-2 mt-2"
       >
         <svg
