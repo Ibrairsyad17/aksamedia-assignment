@@ -1,6 +1,5 @@
 import React from "react";
 import UserManagement from "./UserManagement";
-// import { useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header.tsx";
 import useUsers from "../hooks/useUsers.ts";
 

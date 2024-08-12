@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 
 export default function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [correctUsername, setCorrectUsername] = useState("ibrahim");
+  const [correctUsername, setCorrectUsername] = useState({
+    username: "ibrahim",
+    email: "ibrahim@gmail.com",
+  });
   const [correctPassword, setCorrectPassword] = useState("123456");
-  const [isVerified, setIsVerified] = useState(true);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -15,12 +17,12 @@ export default function useAuth() {
   }, []);
 
   const handleLogin = (username: string, password: string) => {
-    if (username === correctUsername && password === correctPassword) {
-      localStorage.setItem("user", username);
+    if (username === correctUsername.email && password === correctPassword) {
+      localStorage.setItem("user", correctUsername.username);
       localStorage.setItem("password", password);
       setIsAuthenticated(true);
     } else {
-      setIsVerified(false);
+      alert("Username atau Password salah!");
     }
   };
 
@@ -34,7 +36,6 @@ export default function useAuth() {
     isAuthenticated,
     correctUsername,
     correctPassword,
-    isVerified,
     setCorrectPassword,
     setCorrectUsername,
     handleLogin,
