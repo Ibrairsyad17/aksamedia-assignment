@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import UserTable from "./UserTable.tsx";
 
 interface UserManagementProps {
   users: string[];
   onAddUser: (username: string) => void;
   onDeleteUser: (username: string) => void;
   onUpdateUser: (oldUsername: string, newUsername: string) => void;
+  handleNextPage: () => void;
+  handlePrevPage: () => void;
+  currentPage: number;
+  totalPages: number;
 }
 
 const UserManagement: React.FC<UserManagementProps> = ({
@@ -12,6 +17,10 @@ const UserManagement: React.FC<UserManagementProps> = ({
   onAddUser,
   onDeleteUser,
   onUpdateUser,
+  handleNextPage,
+  handlePrevPage,
+  currentPage,
+  totalPages,
 }) => {
   const [newUsername, setNewUsername] = useState("");
   const [editUsername, setEditUsername] = useState("");
@@ -29,35 +38,70 @@ const UserManagement: React.FC<UserManagementProps> = ({
   };
 
   return (
-    <div>
-      <h2>User Management</h2>
-      <input
-        type="text"
-        value={newUsername}
-        onChange={(e) => setNewUsername(e.target.value)}
-        placeholder="New Username"
-      />
-      <button onClick={handleAddUser}>Add User</button>
-      <ul>
-        {users.map((user) => (
-          <li key={user}>
-            {user}
-            <button onClick={() => onDeleteUser(user)}>Delete</button>
-            <button onClick={() => setSelectedUser(user)}>Edit</button>
-          </li>
-        ))}
-      </ul>
-      {selectedUser && (
-        <div>
+    <div className="grid max-w-7xl mx-auto bg-transparent gap-4">
+      <div className="flex flex-col items-center">
+        <div className="w-full flex items-center border shadow space-x-2 rounded-lg px-4 py-3">
           <input
             type="text"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+            placeholder="Tambahkan Pengguna"
+            className="px-3 block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 placeholder:text-xs focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 w-11/12"
+          />
+          <button
+            onClick={handleAddUser}
+            className="py-2 text-xs text-white rounded bg-amber-400 w-1/12"
+          >
+            Tambah
+          </button>
+        </div>
+      </div>
+
+      {selectedUser && (
+        <div className="flex space-x-2 p-5 border shadow">
+          <input
+            type="text"
+            defaultValue={selectedUser}
             value={editUsername}
             onChange={(e) => setEditUsername(e.target.value)}
-            placeholder="Edit Username"
+            placeholder={selectedUser}
+            className="px-3 block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 placeholder:text-xs focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 w-11/12"
           />
-          <button onClick={handleUpdateUser}>Update User</button>
+          <button
+            onClick={handleUpdateUser}
+            className="py-2 text-xs text-white rounded bg-green-500 w-1/12"
+          >
+            Ubah Nama
+          </button>
         </div>
       )}
+
+      <div className="flex flex-col items-center">
+        <UserTable
+          onDeleteUser={onDeleteUser}
+          users={users}
+          setSelectedUser={setSelectedUser}
+        />
+        <div className="mt-4 flex space-x-4 items-center">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="border bg-white px-2.5 py-1 text-sm shadow rounded"
+          >
+            Sebelumnya
+          </button>
+          <span className="text-sm">
+            Halaman {currentPage} dari {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="border bg-white px-2.5 py-1 text-sm shadow rounded"
+          >
+            Selanjutnya
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
