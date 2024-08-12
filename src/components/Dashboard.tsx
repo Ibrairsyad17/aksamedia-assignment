@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserManagement from "./UserManagement";
 import { useNavigate, useLocation } from "react-router-dom";
+import Header from "./Header.tsx";
 
 interface DashboardProps {
   onLogout: () => void;
@@ -94,7 +95,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <Header onLogout={onLogout} />
       <button onClick={onLogout}>Logout</button>
       <input
         type="text"
