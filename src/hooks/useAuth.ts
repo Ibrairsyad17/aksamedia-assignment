@@ -31,6 +31,7 @@ export default function useAuth() {
     localStorage.removeItem("user");
     localStorage.removeItem("password");
     setIsAuthenticated(false);
+    window.location.href = "/";
   };
 
   return {

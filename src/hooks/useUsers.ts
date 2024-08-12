@@ -10,30 +10,6 @@ export default function useUsers() {
   const location = useLocation();
 
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    if (storedUsers.length === 0) {
-      const initialUsers = [
-        "Haaland",
-        "Rashford",
-        "Salah",
-        "Messi",
-        "Gojo",
-        "Yuji",
-        "Tanjiro",
-        "Sakura",
-        "Ariana",
-        "Onana",
-        "Asep",
-      ];
-      localStorage.setItem("users", JSON.stringify(initialUsers));
-      setUsers(initialUsers);
-    } else {
-      setUsers(storedUsers);
-    }
-    setUsers(storedUsers);
-  }, []);
-
-  useEffect(() => {
     const params = new URLSearchParams(location.search);
     const query = params.get("search") || "";
     setSearchQuery(query);
@@ -99,5 +75,6 @@ export default function useUsers() {
     handleSearchChange,
     handleNextPage,
     handlePrevPage,
+    setUsers,
   };
 }
