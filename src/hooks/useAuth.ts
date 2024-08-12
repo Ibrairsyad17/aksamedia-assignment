@@ -21,6 +21,7 @@ export default function useAuth() {
       localStorage.setItem("user", correctUsername.username);
       localStorage.setItem("password", password);
       setIsAuthenticated(true);
+      window.location.href = "/dashboard";
     } else {
       alert("Username atau Password salah!");
     }
