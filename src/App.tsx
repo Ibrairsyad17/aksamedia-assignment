@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login.tsx";
 import Dashboard from "./components/Dashboard.tsx";
+import EditUser from "./components/EditUser.tsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -58,6 +59,20 @@ function App() {
               )
             }
           ></Route>
+          <Route
+            path={"/edit"}
+            element={
+              isAuthenticated ? (
+                <EditUser onLogout={handleLogout} />
+              ) : (
+                <Login
+                  onLogin={(username, password) => {
+                    handleLogin(username, password);
+                  }}
+                />
+              )
+            }
+          />
         </Routes>
       </div>
     </Router>

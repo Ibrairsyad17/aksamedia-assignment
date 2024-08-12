@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DropdownMenu: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -17,6 +20,10 @@ const DropdownMenu: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
     }
   };
 
+  const handleNavigation = () => {
+    navigate("/edit");
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -28,7 +35,7 @@ const DropdownMenu: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
     <div className="relative inline-block dropdown-btn" ref={dropdownRef}>
       <button
         type="button"
-        className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-blue-600 text-white hover:bg-blue-700 shadow-sm focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none relative"
+        className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-white hover:bg-gray-50 shadow-sm focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none relative"
         onClick={toggleDropdown}
       >
         {localStorage.getItem("user")}
@@ -49,6 +56,15 @@ const DropdownMenu: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
       </button>
       {isOpen && (
         <ul className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+          <li className="hover:bg-gray-100 cursor-pointer">
+            <button
+              type="button"
+              className="block w-full px-4 py-2 text-sm text-gray-700"
+              onClick={handleNavigation}
+            >
+              Edit Profile
+            </button>
+          </li>
           <li className="hover:bg-gray-100 cursor-pointer">
             <button
               type="button"
