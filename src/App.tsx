@@ -3,17 +3,13 @@ import Login from "./components/Login.tsx";
 import Dashboard from "./components/Dashboard.tsx";
 import EditUser from "./components/EditUser.tsx";
 import useAuth from "./hooks/useAuth.ts";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useMode from "./hooks/useMode.ts";
 
 function App() {
   const { isAuthenticated, handleLogin, handleLogout } = useAuth();
-  const [mode, setMode] = useState("light");
 
-  const onSelectMode = (mode: string) => {
-    setMode(mode);
-    if (mode === "light") document.body.classList.remove("bg-black");
-    else document.body.classList.add("bg-black");
-  };
+  const { mode, onSelectMode } = useMode();
 
   useEffect(() => {
     window
@@ -56,7 +52,7 @@ function App() {
             path="/dashboard"
             element={
               isAuthenticated ? (
-                <Dashboard onLogout={handleLogout} />
+                <Dashboard onLogout={handleLogout} mode={mode} />
               ) : (
                 <Login
                   onLogin={(username, password) => {
@@ -71,7 +67,7 @@ function App() {
             path={"/edit"}
             element={
               isAuthenticated ? (
-                <EditUser onLogout={handleLogout} />
+                <EditUser onLogout={handleLogout} mode={mode} />
               ) : (
                 <Login
                   onLogin={(username, password) => {
