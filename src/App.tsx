@@ -52,7 +52,7 @@ function App() {
             path="/dashboard"
             element={
               isAuthenticated ? (
-                <Dashboard onLogout={handleLogout} mode={mode} />
+                <Dashboard onLogout={handleLogout} />
               ) : (
                 <Login
                   onLogin={(username, password) => {
@@ -67,7 +67,7 @@ function App() {
             path={"/edit"}
             element={
               isAuthenticated ? (
-                <EditUser onLogout={handleLogout} mode={mode} />
+                <EditUser onLogout={handleLogout} />
               ) : (
                 <Login
                   onLogin={(username, password) => {
