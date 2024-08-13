@@ -35,7 +35,7 @@ const DropdownMenu: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
     <div className="relative inline-block dropdown-btn" ref={dropdownRef}>
       <button
         type="button"
-        className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-white hover:bg-gray-50 shadow-sm focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none relative"
+        className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-white hover:bg-gray-50 shadow-sm focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none relative dark:bg-black dark:text-white dark:hover:bg-black dark:hover:underline dark:focus:bg-black transition duration-200"
         onClick={toggleDropdown}
       >
         {localStorage.getItem("user")}
@@ -55,20 +55,20 @@ const DropdownMenu: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         </svg>
       </button>
       {isOpen && (
-        <ul className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
-          <li className="hover:bg-gray-100 cursor-pointer">
+        <ul className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 dark:bg-black dark:border-gray-900 dark:text-white dark:shadow-lg dark:ring-1 dark:ring-gray-900 transition duration-300">
+          <li className="hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-900 transition duration-300">
             <button
               type="button"
-              className="block w-full px-4 py-2 text-sm text-gray-700"
+              className="block w-full px-4 py-2 text-sm text-gray-700 dark:text-white"
               onClick={handleNavigation}
             >
               Edit Profile
             </button>
           </li>
-          <li className="hover:bg-gray-100 cursor-pointer">
+          <li className="hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-900 transition duration-300">
             <button
               type="button"
-              className="block w-full px-4 py-2 text-sm text-gray-700"
+              className="block w-full px-4 py-2 text-sm text-red-500"
               onClick={onLogout}
             >
               Logout

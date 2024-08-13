@@ -15,30 +15,30 @@ const UserTable: React.FC<UserTableProps> = ({
     <div className="flex flex-col w-full">
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
-          <div className="border rounded-lg overflow-hidden shadow">
-            <table className="min-w-full divide-y divide-gray-200 bg-white">
+          <div className="border rounded-lg overflow-hidden shadow dark:border-gray-800">
+            <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-black dark:divide-gray-800">
               <thead>
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-100"
                   >
                     Nama Pengguna
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-gray-100"
                   >
                     Aksi
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                 {users.map((user) => (
                   <tr key={user}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">
                           {user}
                         </div>
                       </div>
